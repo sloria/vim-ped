@@ -44,7 +44,7 @@ function! s:RunPed(edit_cmd, ipath)
     call s:Echo('ped executable not found. You may need to run "pip install ped".')
     return
   endif
-  let output = system('ped --info '. a:ipath)
+  let output = system(g:ped_executable . ' --info ' . a:ipath)
   let info = split(output)
   if len(info) > 2
     let lineno = info[2]

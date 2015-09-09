@@ -1,10 +1,10 @@
 " ped.vim - Quickly open Python modules in vim
 " Author: Steven Loria
 
-" if exists('g:loaded_ped')
-"   finish
-" endif
-" let g:loaded_ped = 1
+if exists('g:loaded_ped')
+  finish
+endif
+let g:loaded_ped = 1
 
 " Thanks to xolox!
 " http://stackoverflow.com/questions/1533565/how-to-get-visually-selected-text-in-vimscript

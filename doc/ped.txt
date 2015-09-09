@@ -1,0 +1,96 @@
+*ped.txt* Quickly open Python modules by import path            *vim-ped* *ped*
+
+===============================================================================
+INTRO                                                               *ped-intro*
+
+Quickly open Python modules by import path. Uses ped to locate files and
+source lines.
+
+===============================================================================
+PREREQUISITES                                               *ped-prerequisites*
+
+vim-ped requires the {ped}{1} Python package, which can be
+installed with pip.
+
+    $ pip install ped
+                                             {1} http://github.com/sloria/ped
+
+===============================================================================
+USAGE                                                               *ped-usage*
+
+Just call |:Ped| with a Python import path.
+>
+    :Ped <path.to.module>
+<
+
+Examples:
+>
+    :Ped django.shortcuts
+    :Ped django.views.generic.TemplateView
+
+    " Partial matches work, too
+    :Ped django.views.generic.Templ
+<
+
+===============================================================================
+COMMANDS                                                         *ped-commands*
+
+:Ped {import_path}                                                       *:Ped*
+    Opens {import_path}, which may be Python path to a module, class, or
+    function. The file will be open using the command specified by
+    |g:ped_edit_command| ("edit" by default).
+
+:PedSplit {import_path}                                             *:PedSplit*
+    Same as :Ped, but open in a new split.
+
+:PedVsplit {import_path}                                           *:PedVSplit*
+    Same as :Ped, but open in a new vertical split.
+
+:PedTab {import_path}                                                *:PedTab*
+    Same as :Ped, but open in a new tab.
+
+===============================================================================
+KEY MAPPINGS                                                      *ped-keymaps*
+
+<Plug>PedPrompt
+    Shortcut to input `:Ped ` in the command line.
+
+<Plug>PedVword
+    Input `:Ped pkg` in the command line, where "pkg" is the current visual
+    selection.
+
+<Plug>PedVwordExec:
+    Like <Plug>PedVword, but executes immediately.
+
+<Plug>PedCword
+    Input `:Ped pkg` in the command line, where "pkg" is the current word under
+    the cursor.
+
+<Plug>PedCwordExec
+    Like <Plug>PedCword, but executes immediately.
+
+===============================================================================
+OPTIONS                                                           *ped-options*
+
+g:ped_executable                                             *g:ped_executable*
+    Default: "ped"
+
+g:ped_edit_command                                         *g:ped_edit_command*
+    Default: "edit"
+    Vim command to open files.
+    Examples: "split", "vsplit", "tabedit"
+
+
+Example mappings:
+>
+    nmap <leader>e <Plug>PedPrompt
+    nmap <leader>E <Plug>PedCwordExec
+    vmap <leader>e <Plug>PedVwordExec
+<
+
+===============================================================================
+LICENSE                                                           *ped-license*
+
+MIT
+
+ vim: tw=78 ts=8 sw=4 sts=4 et ft=help

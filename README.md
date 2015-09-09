@@ -6,14 +6,13 @@ This is particularly useful for viewing/editing third-party packages in a virtua
 
 ## Installation
 
-
 Requires the [ped](https://pypi.python.org/pypi/ped) Python package (installable with `pip`).
 
 ```bash
 $ pip install -U ped
 ```
 
-Then add this plugin using your favorite plugin manage.
+Then add this plugin using your favorite plugin manager.
 
 Using [vim-plug](https://github.com/junegunn/vim-plug):
 
@@ -68,3 +67,7 @@ let g:ped_edit_command = 'edit'
 " ped executable, defaults to 'ped'
 let g:ped_executable = 'ped'
 ```
+
+## License
+
+[MIT Licensed](http://sloria.mit-license.org).

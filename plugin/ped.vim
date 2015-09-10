@@ -77,11 +77,20 @@ function! s:PedCword(to_exec)
   return cmd
 endfunction
 
+" Tab-complete Python module names; uses 'ped --complete'
+function! s:ModuleComplete(arg_lead, line, position)
+  if len(a:arg_lead)
+    return system(g:ped_executable . ' --complete ' . a:arg_lead)
+  else
+    return ''
+  endif
+endfunction
+
 " Commands
-command! -nargs=1 -bar Ped call s:RunPed(g:ped_edit_command, <q-args>)
-command! -nargs=1 -bar PedSplit call s:RunPed('split', <q-args>)
-command! -nargs=1 -bar PedVSplit call s:RunPed('vsplit', <q-args>)
-command! -nargs=1 -bar PedTab call s:RunPed('tabedit', <q-args>)
+command! -nargs=1 -bar -complete=custom,s:ModuleComplete Ped call s:RunPed(g:ped_edit_command, <q-args>)
+command! -nargs=1 -bar -complete=custom,s:ModuleComplete PedSplit call s:RunPed('split', <q-args>)
+command! -nargs=1 -bar -complete=custom,s:ModuleComplete PedVSplit call s:RunPed('vsplit', <q-args>)
+command! -nargs=1 -bar -complete=custom,s:ModuleComplete PedTab call s:RunPed('tabedit', <q-args>)
 
 " Maps
 nnoremap <Plug>PedPrompt :Ped<Space>

@@ -6,6 +6,14 @@ if exists('g:loaded_ped')
 endif
 let g:loaded_ped = 1
 
+if !exists('g:ped_executable')
+  let g:ped_executable = 'ped'
+endif
+
+if !exists('g:ped_edit_command')
+  let g:ped_edit_command = 'edit'
+endif
+
 " Thanks to xolox!
 " http://stackoverflow.com/questions/1533565/how-to-get-visually-selected-text-in-vimscript
 func! g:PedVisualSelection() abort
@@ -17,14 +25,6 @@ func! g:PedVisualSelection() abort
   let lines[0] = lines[0][col1 - 1:]
   return join(lines, "\n")
 endf
-
-if !exists('g:ped_executable')
-  let g:ped_executable = 'ped'
-endif
-
-if !exists('g:ped_edit_command')
-  let g:ped_edit_command = 'edit'
-endif
 
 function! s:Echo(msg, ...)
   redraw
@@ -44,7 +44,7 @@ function! s:RunPed(edit_cmd, ipath)
     call s:Echo('ped executable not found. You may need to run "pip install ped".')
     return
   endif
-  let output = system(g:ped_executable . ' --info ' . a:ipath)
+  let output = system(g:ped_executable . ' --info ' . shellescape(a:ipath))
   let info = split(output)
   if len(info) > 2
     let lineno = info[2]
@@ -79,11 +79,7 @@ endfunction
 
 " Tab-complete Python module names; uses 'ped --complete'
 function! s:ModuleComplete(arg_lead, line, position)
-  if len(a:arg_lead)
-    return system(g:ped_executable . ' --complete ' . a:arg_lead)
-  else
-    return ''
-  endif
+  return system(g:ped_executable . ' --complete ' . shellescape(a:arg_lead))
 endfunction
 
 " Commands

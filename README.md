@@ -4,27 +4,7 @@ Quickly open Python modules based on Python import paths.
 
 This is particularly useful for viewing/editing third-party packages in a virtual environment.
 
-## Installation
-
-Requires the [ped](https://pypi.python.org/pypi/ped) Python package (installable with `pip`).
-
-```bash
-$ pip install -U ped
-```
-
-Then add this plugin using your favorite plugin manager.
-
-Using [vim-plug](https://github.com/junegunn/vim-plug):
-
-```vim
-" ~/.vimrc
-
-Plug 'sloria/vim-ped'
-```
-
 ## Quickstart
-
-Just call `:Ped` with a Python import path.
 
 ```vim
 :Ped <path.to.module>
@@ -40,6 +20,22 @@ Just call `:Ped` with a Python import path.
 :Ped django.views.generic.Templ
 ```
 
+## Installation
+
+Requires the [ped](https://pypi.python.org/pypi/ped) Python package (installable with `pip`).
+
+```bash
+$ pip install -U ped
+```
+
+Then add this plugin using your favorite plugin manager.
+
+Using [vim-plug](https://github.com/junegunn/vim-plug):
+
+```vim
+" ~/.vimrc
+Plug 'sloria/vim-ped'
+```
 ## Defining mappings
 
 - `<Plug>PedPrompt`: Shortcut to input `:Ped ` in the command line.
